@@ -14,4 +14,15 @@ class CardRepository {
           Icons.access_alarm_rounded,
         ))
   ];
+
+  static List<CardModel> cardIntermediario = [
+    CardModel(titulo: 'Titulo Bagulho', icon: const Icon(Icons.lock)),
+    CardModel(titulo: 'Titulo Bagulho', icon: const Icon(Icons.lock)),
+  ];
+
+  static List<CardModel> cardAvancado = [
+    CardModel(titulo: 'Avançado', icon: const Icon(Icons.key)),
+    CardModel(titulo: 'Avançado', icon: const Icon(Icons.key)),
+    CardModel(titulo: 'Avançado', icon: const Icon(Icons.key)),
+  ];
 }

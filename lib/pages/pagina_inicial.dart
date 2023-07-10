@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:new_future/pages/avancado.dart';
 import 'package:new_future/pages/basico.dart';
+import 'package:new_future/pages/intermediario.dart';
 
 class PaginaPrincipal extends StatefulWidget {
   const PaginaPrincipal({super.key});
@@ -9,6 +11,8 @@ class PaginaPrincipal extends StatefulWidget {
 }
 
 class _PaginaPrincipalState extends State<PaginaPrincipal> {
+  List pages = [const Basico(), const Intermediario(), const Avancado()];
+  int cont = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +53,11 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          cont = 0;
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(88, 48),
                         shape: RoundedRectangleBorder(
@@ -66,7 +74,11 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          cont = 1;
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(115, 48),
                           shape: RoundedRectangleBorder(
@@ -82,7 +94,11 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          cont = 2;
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(88, 48),
                           shape: RoundedRectangleBorder(
@@ -100,7 +116,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                   ],
                 ),
               ),
-              Expanded(child: Basico())
+              Expanded(child: pages[cont])
             ],
           ),
         ),
