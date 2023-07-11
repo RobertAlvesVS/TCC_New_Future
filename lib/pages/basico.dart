@@ -12,18 +12,6 @@ class Basico extends StatefulWidget {
 class _BasicoState extends State<Basico> {
   final cardBasico = CardRepository.cardBasico;
   late YoutubePlayerController controller;
-  @override
-  void initState() {
-    super.initState();
-    const url = 'https://www.youtube.com/watch?v=QCz9bI5ahek';
-    controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(url)!,
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +34,27 @@ class _BasicoState extends State<Basico> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return Scaffold(
-                      body: YoutubePlayerBuilder(
-                          player: YoutubePlayer(
-                            controller: controller,
-                          ),
-                          builder: (context, player) {
-                            return Column(
-                              children: [
-                                player,
-                              ],
-                            );
-                          }));
+                  controller = YoutubePlayerController(
+                    initialVideoId:
+                        YoutubePlayer.convertUrlToId(cardBasico[index].urlYT)!,
+                    flags: const YoutubePlayerFlags(
+                      autoPlay: true,
+                      mute: false,
+                    ),
+                  );
+                  return YoutubePlayerBuilder(
+                      player: YoutubePlayer(
+                        controller: controller,
+                        onReady: () {
+                          controller.toggleFullScreenMode();
+                        },
+                        onEnded: (metaData) {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      builder: (context, player) {
+                        return player;
+                      });
                 },
               ));
             },

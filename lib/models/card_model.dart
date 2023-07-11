@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CardModel {
   final String titulo;
   final Icon icon;
-  String urlYT;
+  final String urlYT;
 
-  CardModel({required this.titulo, required this.icon, this.urlYT = ''});
+  CardModel({required this.titulo, required this.icon, required this.urlYT});
 }
