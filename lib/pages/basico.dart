@@ -11,15 +11,18 @@ class Basico extends StatefulWidget {
 
 class _BasicoState extends State<Basico> {
   final cardBasico = CardRepository.cardBasico;
-  final videoURL = 'https://www.youtube.com/watch?v=1j5ePXWGrag';
   late YoutubePlayerController controller;
-
   @override
   void initState() {
-    final videoID = YoutubePlayer.convertUrlToId(videoURL);
-    controller = YoutubePlayerController(
-        initialVideoId: videoID!, flags: YoutubePlayerFlags(autoPlay: true));
     super.initState();
+    const url = 'https://www.youtube.com/watch?v=QCz9bI5ahek';
+    controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(url)!,
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
   }
 
   @override
@@ -41,18 +44,22 @@ class _BasicoState extends State<Basico> {
             ),
             contentPadding: const EdgeInsets.all(20),
             onTap: () {
-              setState(() {
-                YoutubePlayerBuilder(
-                  player: YoutubePlayer(controller: controller),
-                  builder: (context, player) {
-                    return Scaffold(
-                        body: Container(
-                      child: player,
-                    ));
-                  },
-                );
-                debugPrint('HIIIIIIIIIIII');
-              });
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return Scaffold(
+                      body: YoutubePlayerBuilder(
+                          player: YoutubePlayer(
+                            controller: controller,
+                          ),
+                          builder: (context, player) {
+                            return Column(
+                              children: [
+                                player,
+                              ],
+                            );
+                          }));
+                },
+              ));
             },
           ),
         );
