@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:new_future/controller/card_repository.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -49,6 +50,8 @@ class _BasicoState extends State<Basico> {
                           controller.toggleFullScreenMode();
                         },
                         onEnded: (metaData) {
+                          SystemChrome.setPreferredOrientations(
+                              [DeviceOrientation.portraitUp]);
                           Navigator.pop(context);
                         },
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:new_future/pages/avancado.dart';
 import 'package:new_future/pages/basico.dart';
 import 'package:new_future/pages/intermediario.dart';
@@ -13,6 +14,12 @@ class PaginaPrincipal extends StatefulWidget {
 class _PaginaPrincipalState extends State<PaginaPrincipal> {
   List pages = [const Basico(), const Intermediario(), const Avancado()];
   int cont = 0;
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,11 +60,13 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          cont = 0;
-                        });
-                      },
+                      onPressed: cont == 0
+                          ? null
+                          : () {
+                              setState(() {
+                                cont = 0;
+                              });
+                            },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(88, 48),
                         shape: RoundedRectangleBorder(
@@ -74,11 +83,13 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          cont = 1;
-                        });
-                      },
+                      onPressed: cont == 1
+                          ? null
+                          : () {
+                              setState(() {
+                                cont = 1;
+                              });
+                            },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(115, 48),
                           shape: RoundedRectangleBorder(
@@ -94,11 +105,13 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          cont = 2;
-                        });
-                      },
+                      onPressed: cont == 2
+                          ? null
+                          : () {
+                              setState(() {
+                                cont = 2;
+                              });
+                            },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(88, 48),
                           shape: RoundedRectangleBorder(
